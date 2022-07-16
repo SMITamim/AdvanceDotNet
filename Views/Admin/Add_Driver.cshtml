@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "Add Driver";
+}
+
+<main class="mt-5">
+    <div class="flex justify-center items-center">
+        <form action=""
+              method="post"
+              enctype = "multipart/form-data"
+              class="grid grid-cols-3 gap-5 w-1/2 h-5/6">
+            <div class="col-span-3">
+                <h3 class="text-center text-3xl">Driver Registration</h3>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="fn">First Name</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="first_name"
+                       id="first_name"
+                       placeholder="First Name" />
+                @Html.ValidationMessage("first_name", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="fn">Last Name</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="last_name"
+                       id="last_name"
+                       placeholder="Full Name" />
+                @Html.ValidationMessage("last_name", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="email">E-mail</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Email"
+                       id="email"
+                       placeholder="E-mail" />
+                @Html.ValidationMessage("Email", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="pnumber">Phone Number</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="phone"
+                       id="pnumber"
+                       placeholder="Phone Number" />
+                @Html.ValidationMessage("phone", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col row-span-2">
+                <img id="img" src="~/Content/avatar.jpg" width="100"/>
+                <label for="pp">Profile Picture</label>
+                <input class="text-white"
+                       type="file"
+                       name="photo"
+                       id="photo"
+                       placeholder="Profile Picture" />
+                @Html.ValidationMessage("photo", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class=" flex flex-col">
+                <label for="gender">Gender</label>
+                <div class="flex gap-2 items-center">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Male" />
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Female" />
+                    @Html.ValidationMessage("gender", "", new { @class = "text-red" }, "span")
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="dob">Date of birth</label>
+                <input class="rounded-input"
+                       type="date"
+                       name="Date_of_birth"
+                       id="dob"
+                       placeholder="Date of birth" />
+                @Html.ValidationMessage("Date_of_birth", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="age">Age</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="age"
+                       id="age"
+                       placeholder="Age" />
+                @Html.ValidationMessage("age", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="Blood_group">Blood Group</label>
+                <select name="Blood_group" id="bloodG" class="text-dark">
+                    <option value="">Please choose an option</option>
+                    <option value="A+">A+</option>
+                    <option value="O+">O+</option>
+                    <option value="B+">B+</option>
+                    <option value="AB+">AB+</option>
+                    <option value="A-">A-</option>
+                    <option value="O-">O-</option>
+                    <option value="B-">B-</option>
+                    <option value="AB-">AB-</option>
+                </select>
+                @Html.ValidationMessage("Blood_group", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="fathersN">Father / Husband Name</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Father_name"
+                       id="fathersN"
+                       placeholder="Father / Husband Name" />
+                @Html.ValidationMessage("Father_name", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="age">Address</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Address"
+                       id="address"
+                       placeholder="Address" />
+                @Html.ValidationMessage("Address", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="dln">Driving License No.</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Driving_license_number"
+                       id="dln"
+                       placeholder="Driving License Number" />
+                @Html.ValidationMessage("Driving_license_number", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="category">Category</label>
+                <select name="Category" id="category" class="text-dark">
+                    <option value="">Please choose an option</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Non-Professional">Non-Professional</option>
+                </select>
+                @Html.ValidationMessage("Category", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="doi">Date of issue</label>
+                <input class="rounded-input"
+                       type="date"
+                       name="Date_of_issue"
+                       id="doi"
+                       placeholder="Date of issue" />
+                @Html.ValidationMessage("Date_of_issue", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="issueA">Issuing Authority</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Issuing_authority"
+                       id="issueA"
+                       placeholder="Issuing Authority" />
+                @Html.ValidationMessage("Issuing_authority", "", new { @class = "text-red" }, "span")
+            </div>
+            <br />
+            <div class="mx-auto col-span-3">
+                <input class="bg-[#337ec4] px-4 py-2 rounded-2xl hover:bg-[#348fe4] transition-colors duration-200"
+                       type="submit"
+                       value="Register" />
+            </div>
+        </form>
+    </div>
+</main>
+<script>
+    let dob = document.getElementById("dob");
+    let age = document.getElementById("age");
+    let imgInp = document.getElementById("photo")
+    let img = document.getElementById("img")
+    dob.addEventListener('change', (e) => {
+        let date = e.target.value
+        let ageDifMs = Date.now() - Date.parse(date);
+        let ageDate = new Date(ageDifMs); // miliseconds from epoch
+        let a = Math.abs(ageDate.getUTCFullYear() - 1970)
+        console.log(a)
+        age.value = a;
+    })
+
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            img.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+

@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewBag.Title = "Update Driver";
+}
+
+<main class="mt-5">
+    <div class="flex justify-center items-center">
+        <form action=""
+              method="post"
+              enctype = "multipart/form-data"
+              class="grid grid-cols-3 gap-5 w-1/2 h-5/6">
+            <div class="col-span-3">
+                <h3 class="text-center text-3xl">Update Driver Information</h3>
+            </div>
+
+            <div class="flex flex-col row-span-2">
+                <label for="pp">Profile Picture</label>
+                <img src="~/uploads/@Model.Photo" alt="profile photo" id="img" width="100">
+                <input class="text-white"
+                       type="file"
+                       name="photo"
+                       id="photo"
+                       placeholder="Profile Picture" />
+                @Html.ValidationMessage("photo", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="fn">First Name</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="first_name"
+                       id="first_name"
+                       value="@Model.First_name"
+                       placeholder="First Name" />
+                @Html.ValidationMessage("first_name", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="fn">Last Name</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="last_name"
+                       id="last_name"
+                       value="@Model.Last_name"
+                       placeholder="Full Name" />
+                @Html.ValidationMessage("last_name", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="email">E-mail</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="email"
+                       id="email"
+                       value="@Model.Email"
+                       placeholder="E-mail" />
+                @Html.ValidationMessage("Email", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="pnumber">Phone Number</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="phone"
+                       id="phone"
+                       value="@Model.Phone"
+                       placeholder="Phone Number" />
+                @Html.ValidationMessage("phone", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="gender">Gender</label>
+                <div class="flex gap-2 items-center">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Male" @(Model.Gender == "Male" ? "checked" : "") />
+                    <label for="female">Female</label>
+                    <input type="radio" id="other" name="gender" value="Female" @(Model.Gender == "Female" ? "checked" : "") />
+                    @Html.ValidationMessage("gender", "", new { @class = "text-red" }, "span")
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="dob">Date of birth</label>
+                <input class="rounded-input"
+                       type="date"
+                       name="Date_of_birth"
+                       value="@Model.Date_of_birth"
+                       id="dob"
+                       placeholder="Date of birth" />
+                @Html.ValidationMessage("Date_of_birth", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="age">Age</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="age"
+                       id="age"
+                       value="@Model.Age"
+                       placeholder="Age" />
+                @Html.ValidationMessage("age", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="Blood_group">Blood Group</label>
+                <select name="Blood_group" id="bloodG" class="text-dark">
+                    <option value="">Please choose an option</option>
+                    <option value="A+" @(Model.Blood_group == "A+" ? "selected" : "")>A+</option>
+                    <option value="O+" @(Model.Blood_group == "O+" ? "selected" : "")>O+</option>
+                    <option value="B+" @(Model.Blood_group == "B+" ? "selected" : "")>B+</option>
+                    <option value="AB+" @(Model.Blood_group == "AB+" ? "selected" : "")>AB+</option>
+                    <option value="A-" @(Model.Blood_group == "A-" ? "selected" : "")>A-</option>
+                    <option value="O-" @(Model.Blood_group == "O-" ? "selected" : "")>O-</option>
+                    <option value="B-" @(Model.Blood_group == "B-" ? "selected" : "")>B-</option>
+                    <option value="AB-" @(Model.Blood_group == "AB-" ? "selected" : "")>AB-</option>
+                </select>
+                @Html.ValidationMessage("Blood_group", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="fathersN">Father / Husband Name</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Father_name"
+                       id="Father_name"
+                       value="@Model.Father_name"
+                       placeholder="Father / Husband Name" />
+                @Html.ValidationMessage("Father_name", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="age">Address</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="address"
+                       id="address"
+                       value="@Model.Address"
+                       placeholder="Address" />
+                @Html.ValidationMessage("Address", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="dln">Driving License No.</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Driving_license_number"
+                       id="Driving_license_number"
+                       value="@Model.Driving_license_number"
+                       placeholder="Driving License Number" />
+                @Html.ValidationMessage("Driving_license_number", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="Category">Category</label>
+                <select name="Category" id="category" class="text-dark">
+                    <option value="">Please choose an option</option>
+                    <option value="Professional" @(Model.Category == "Professional" ? "selected" : "")>Professional</option>
+                    <option value="Non-Professional" @(Model.Category == "Non-Professional" ? "selected" : "")>Non-Professional</option>
+                </select>
+                @Html.ValidationMessage("Category", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="doi">Date of issue</label>
+                <input class="rounded-input"
+                       type="date"
+                       name="Date_of_issue"
+                       id="Date_of_issue"
+                       value="@Model.Date_of_issue"
+                       disabled
+                       placeholder="Date of issue" />
+                @Html.ValidationMessage("Date_of_issue", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="issueA">Issuing Authority</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="Issuing_authority"
+                       id="Issuing_authority"
+                       value="@Model.Issuing_authority"
+                       placeholder="Issuing Authority" />
+            </div>
+            <div class="flex flex-col">
+                <label for="issueA">Update Validity for 2 Year</label>
+                <input class=""
+                       type="checkbox"
+                       name="validity"
+                       id="validity" />
+            </div>
+            <div class="flex flex-col">
+                <label for="issueA">Mark Wanted</label>
+                <input class=""
+                       @(Model.Is_wanted=="true"?"checked":"")
+                       type="checkbox"
+                       name="is_wanted"
+                       id="is_wanted" />
+            </div>
+            <br />
+            <div class="mx-auto col-span-3">
+                <input class="bg-[#337ec4] px-4 py-2 rounded-2xl hover:bg-[#348fe4] transition-colors duration-200"
+                       type="submit"
+                       value="Register" />
+            </div>
+        </form>
+    </div>
+</main>
+<script>
+    let imgInp = document.getElementById("photo")
+    let img = document.getElementById("img")
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            img.src = URL.createObjectURL(file)
+        }
+    }
+</script>
+

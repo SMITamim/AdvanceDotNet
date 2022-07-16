@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Driver Details";
+}
+
+<!--Popup-->
+<div id="popup"
+     class="absolute inset-0 hidden justify-center items-center bg-offWhite bg-opacity-10 backdrop-blur-sm">
+    <div class="w-3/4 h-3/4 bg-dark rounded-md flex justify-center items-center relative">
+        <div id="close" class="absolute top-5 right-5 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </div>
+        <form action="/surgeon/Add_Offence/@Model.Item1.Id" method="post" class="grid grid-cols-4 gap-5">
+            <div class="flex flex-col col-span-2 w-52">
+                <label for="username">Category</label>
+                <select name="offence_name" id="fine_selection" class="text-dark">
+                    <option value="" data-fine="Select Offence">Select Offence</option>
+                    @foreach (var o in Model.Item2)
+                    {
+                        <option value="@o.Offence_name" data-fine="@o.Fine">@o.Offence_name</option>
+                    }
+                </select>
+            </div>
+
+            <div></div>
+            <div></div>
+
+            <div class="flex flex-col">
+                <label for="fine">Fine</label>
+                <input class="hidden" name="fine" type="text" id="fine_input" />
+                <p id="fine">Select Offence</p>
+            </div>
+            <input class="btn-primary" type="Submit" value="Submit" />
+        </form>
+    </div>
+</div>
+
+@if (Model.Item1.Is_wanted.Equals("true"))
+{
+    <div class="flex justify-center py-4 w-screen mt-4 gradient-background">
+        <h1 class="text-3xl">This Driver Marked As Most Wanted</h1>
+    </div>
+}
+
+<main class="mx-10">
+    <div class="grid grid-cols-4 items-center mt-5 bg-offWhite bg-opacity-40 p-5 rounded-t-xl">
+        <div class="row-span-3 justify-self-center">
+            <img src="~/uploads/@Model.Item1.Photo"
+                 width="200"
+                 alt="User Photo" />
+        </div>
+        <div class="">
+            <p>@Model.Item1.First_name @Model.Item1.Last_name</p>
+        </div>
+        <div>
+            <p>ID: @Model.Item1.Id</p>
+        </div>
+        <div>
+            <p>DOB: @Model.Item1.Date_of_birth</p>
+        </div>
+        <div>
+            <p>Age: @Model.Item1.Age</p>
+        </div>
+        <!--2nd Row Start-->
+        <div>
+            <p>Driver Licence No: @Model.Item1.Driving_license_number</p>
+        </div>
+        <div>
+            <p>Gender: @Model.Item1.Gender</p>
+        </div>
+        <div>
+            <p>Email: @Model.Item1.Email</p>
+        </div>
+        <div>
+            <p>Date of Issue: @Model.Item1.Date_of_issue</p>
+        </div>
+        <div>
+            @if (Model.Item1.Is_wanted.Equals("true"))
+            {
+                <button class="btn-primary btn-red">Unmark Most Wanteed</button>
+            }
+            else
+            {
+                <button class="btn-primary btn-red">Mark Most Wanteed</button>
+            }
+
+        </div>
+    </div>
+
+    <div class="mt-5 bg-offWhite bg-opacity-40 rounded-b-xl p-5">
+        <div class="flex justify-between mb-5">
+            <h3 class="text-2xl">Offence List:</h3>
+            <button id="add_offence" class="btn-primary btn-red">Add Offence</button>
+        </div>
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-tl-lg">SL</th>
+                    <th scope="col" class="px-6 py-3">Offence Category</th>
+                    <th scope="col" class="px-6 py-3">Details</th>
+                    <th scope="col" class="px-6 py-3">Zone</th>
+                    <th scope="col" class="px-6 py-3">Date</th>
+                    <th scope="col" class="px-6 py-3 rounded-tr-lg">Payment</th>
+                </tr>
+            </thead>
+            @if (Model.Item3.Count != 0)
+            {
+                <tbody>
+                    @foreach (var o in Model.Item3)
+                    {
+                        <tr class="table-row">
+                            <td scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                1
+                            </td>
+                            <td class="px-6 py-4">@o.Driver.First_name @o.Driver.Last_name</td>
+                            <td class="px-6 py-4">@o.Offence.Offence_name</td>
+                            <td class="px-6 py-4">@o.Surgeon.Zone</td>
+                            <td class="px-6 py-4">@o.Occuring_date</td>
+                            <td class="px-6 py-4">@o.Payment_status</td>
+                        </tr>
+                    }
+
+                </tbody>
+            }
+        </table>
+        @if (Model.Item3.Count == 0)
+        {
+            <div class="flex justify-center"><h3 class='text-2xl'>No Offence Yet</h3></div>
+        }
+    </div>
+</main>
+
+<script>
+    let popup = document.querySelector('#popup');
+    let openBtn = document.querySelector("#add_offence");
+    let closeBtn = document.querySelector("#close");
+    closeBtn.addEventListener('click', () => {
+        popup.classList.replace('flex', 'hidden')
+    })
+    openBtn.addEventListener('click', () => {
+        popup.classList.replace('hidden', 'flex')
+    })
+    //Fine data binding start
+    let fine_selection = document.querySelector("#fine_selection");
+    let fine = document.querySelector("#fine");
+    let fine_input = document.querySelector("#fine_input");
+    fine_selection.addEventListener("change", (e) => {
+        let element = e.target.options[e.target.selectedIndex];
+        fine.innerText = element.getAttribute("data-fine") + " BDT";
+        fine_input.value = element.getAttribute("data-fine");
+    })
+</script>

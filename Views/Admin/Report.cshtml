@@ -1,0 +1,30 @@
+﻿@using Project.EF;
+@model List<Notification>
+@{
+    ViewBag.Title = "Report";
+}
+
+<main class="mt-5">
+    <h3>View Emergency Report</h3>
+    <div class="mt-5 p-5">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-tl-lg">ID</th>
+                    <th scope="col" class="px-6 py-3">Subject</th>
+                    <th scope="col" class="px-6 py-3 rounded-tr-lg">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var n in Model)
+                {
+                    <tr class="table-row">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@n.Id</td>
+                        <td class="px-6 py-4">@n.Subject</td>
+                        <td class="px-6 py-4">@n.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Surgeon List";
+}
+
+<main class="mt-5">
+
+    <div class="mt-5 p-5">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-tl-lg">ID</th>
+                    <th scope="col" class="px-6 py-3">Zone</th>
+                    <th scope="col" class="px-6 py-3 rounded-tr-lg">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr class="table-row">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@s.Id</td>
+                        <td class="px-6 py-4">@s.Zone</td>
+                        <td class="px-6 py-4"><a href="/admin/update_surgeon/@s.Id"><button class="btn-primary text-white">Update</button></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</main>
+

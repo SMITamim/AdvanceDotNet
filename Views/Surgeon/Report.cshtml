@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2 class="text-4xl mt-5 mb-5">Report</h2>
+<div class="flex flex-col justify-center items-center">
+    <form class="mt-10" action="" method="POST">
+        <table style="border-collapse: separate; border-spacing: 10px 50px;">
+            <tr>
+                <td>Subject</td>
+                <td><input type="text" name="subject" class="rounded-input" /></td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td>
+                    <textarea name="message" class="text-dark"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center"><input type="submit" value="Submit" class="btn-primary" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+

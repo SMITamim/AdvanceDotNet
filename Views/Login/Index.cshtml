@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<main class="h-[90vh]">
+    <div class="h-full flex justify-center items-center">
+        <form action="" method="post" class="flex flex-col gap-5">
+            <div>
+                <h3 class="text-center text-3xl">Login</h3>
+            </div>
+            <div class="flex flex-col">
+                <label for="username">Username</label>
+                <input class="rounded-input" type="text" name="username" id="username" placeholder="Username" />
+            </div>
+            <div class="flex flex-col">
+                <label for="pass">Password</label>
+                <input class="rounded-input" type="password" name="password" id="pass" placeholder="Password" />
+            </div>
+            <div class="mx-auto">
+                <input class="bg-[#337ec4] px-4 py-2 rounded-2xl hover:bg-[#348fe4] transition-colors duration-200" type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</main>
+

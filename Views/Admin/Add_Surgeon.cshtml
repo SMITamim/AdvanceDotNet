@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Add Surgeon";
+}
+
+<main class="mt-5">
+    <div class="flex justify-center items-center">
+        <form action=""
+              method="post"
+              class="grid grid-cols-3 gap-5 w-1/2 h-5/6">
+            <div class="col-span-3">
+                <h3 class="text-center text-3xl">Update Surgeon Information</h3>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="email">Type Password</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="password"
+                       id="password"
+                       placeholder="Password" />
+                       @Html.ValidationMessage("password", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="flex flex-col">
+                <label for="pnumber">Type Password Again</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="password_again"
+                       id="password_again"
+                       placeholder="Type Password Again" />
+            </div>
+
+            <div class="flex flex-col">
+                <label for="age">Zone</label>
+                <input class="rounded-input"
+                       type="text"
+                       name="zone"
+                       id="zone"
+                       placeholder="Zone" />
+                       @Html.ValidationMessage("zone", "", new { @class = "text-red" }, "span")
+            </div>
+
+            <div class="mx-auto col-span-3">
+                <input class="bg-[#337ec4] px-4 py-2 rounded-2xl hover:bg-[#348fe4] transition-colors duration-200"
+                       type="submit"
+                       value="Register" />
+            </div>
+        </form>
+    </div>
+</main>
+

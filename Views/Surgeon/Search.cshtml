@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Search Driver";
+}
+
+<main class="mt-5">
+    <div class="flex justify-center gap-5">
+        <div><input type="text" name="name" id="name" placeholder="Enter Name" class="rounded-input" oninput="getData()"></div>
+        <div><input type="text" name="licence" id="licence" placeholder="Enter Licence No" class="rounded-input" oninput="getData()"></div>
+        <div><input type="text" name="vehicle" id="vehicle" placeholder="Vehicle No" class="rounded-input"></div>
+    </div>
+
+    <div class="mt-5">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-tl-lg">ID</th>
+                    <th scope="col" class="px-6 py-3">Photo</th>
+                    <th scope="col" class="px-6 py-3">Name</th>
+                    <th scope="col" class="px-6 py-3">Licence</th>
+                    <th scope="col" class="px-6 py-3">Rating</th>
+                    <th scope="col" class="px-6 py-3 rounded-tr-lg">Action</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                @foreach (var d in Model)
+                {
+                    <tr class="table-row">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@d.Id</td>
+                        <td class="px-6 py-4"><img src="~/uploads/@d.Photo" width="50" /></td>
+                        <td class="px-6 py-4">@d.First_name @d.Last_name</td>
+                        <td class="px-6 py-4">@d.Driving_license_number</td>
+                        <td class="px-6 py-4">@d.Date_of_issue</td>
+                        <td class="px-6 py-4"><a href="/surgeon/Driver_Details/@d.Id" class="btn-primary text-white">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div id="message" class="flex justify-center"></div>
+    </div>
+</main>
+<script>
+    let name = document.getElementById("name");
+    let licence = document.getElementById("licence");
+    let body = document.getElementById("tbody");
+    let message = document.getElementById("message");
+    const getData = (e) => {
+        fetch(`${document.location.origin}/surgeon/Search_Driver/?name=${name.value}&regNumber=${licence.value}`).then(response => response.json()).then(result => {
+            message.innerHTML = "";
+            if (result.length == 0) {
+                message.innerHTML = "<h3 class='text-2xl'>No Result Found<h3>";
+            }
+            console.log(result);
+            body.innerHTML = "";
+            result.forEach(el => {
+                let tr = document.createElement("tr");
+                tr.classList.add("table-row");
+                tr.innerHTML = `
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${el.Id}</td>
+                    <td class="px-6 py-4"><img src="${document.location.origin}/uploads/${el.Photo}" width="50" /></td>
+                    <td class="px-6 py-4">${el.First_name} ${el.Last_name}</td>
+                    <td class="px-6 py-4">${el.Driving_license_number}</td>
+                    <td class="px-6 py-4">${el.Date_of_issue}</td>
+                    <td class="px-6 py-4"><a href="/admin/update_driver/${el.Id}" class="btn-primary text-white">Update</a></td>`
+                body.appendChild(tr);
+            });
+        });
+
+
+
+    }
+</script>

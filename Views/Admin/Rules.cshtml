@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Rules";
+    int count = 1;
+}
+<div id="popup"
+     class="absolute inset-0 hidden justify-center items-center bg-offWhite bg-opacity-10 backdrop-blur-sm">
+    <div class="w-3/4 h-3/4 bg-dark rounded-md flex justify-center items-center relative">
+        <div id="close" class="absolute top-5 right-5 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </div>
+        <div>
+            <form id="update_form" action="" method="post" class="space-y-5">
+                <div class="flex flex-col">
+                    <label for="fine">Name</label>
+                    <input name="Offence_name" id="name" class="rounded-input" type="text" placeholder="Name">
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="fine">Fine</label>
+                    <input name="fine" id="fine" class="rounded-input" type="text" placeholder="Fine">
+                </div>
+
+                <div class="flex flex-col">
+                    <input class="btn-primary" type="submit" value="Submit">
+                </div>
+            </form>
+            <form id="delete_form" action="" method="POST" class="flex flex-col mt-4">
+                <input class="btn-primary btn-red" type="submit" value="Delete" />
+            </form>
+        </div>
+    </div>
+</div>
+<main class="w-4/5 mx-auto mt-10">
+    <div class="flex justify-between">
+        <h2 class="text-2xl">Rules</h2>
+        <button id="addRule" class="btn-primary">Add New Rule</button>
+    </div>
+    <div class="mt-4">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 rounded-tl-lg">SL</th>
+                    <th scope="col" class="px-6 py-3">Rule</th>
+                    <th scope="col" class="px-6 py-3">Fine</th>
+                    <th scope="col" class="px-6 py-3 rounded-tr-lg">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var o in Model)
+                {
+                    <tr class="table-row">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@count</td>
+                        <td class="px-6 py-4">@o.Offence_name</td>
+                        <td class="px-6 py-4">@o.Fine Tk</td>
+                        <td class="px-6 py-4"><button onclick="openEditBox(@o.Id,'@o.Offence_name', @o.Fine)" id="edit" class="btn-primary text-offWhite">Edit</button></td>
+                    </tr>
+                    count++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+    let popup = document.querySelector('#popup');
+    let openBtn = document.querySelector("#addRule");
+    let closeBtn = document.querySelector("#close");
+    closeBtn.addEventListener('click', () => {
+        popup.classList.replace('flex', 'hidden')
+    })
+    openBtn.addEventListener('click', () => {
+        document.querySelector('#delete_form').classList.replace('flex', 'hidden');
+        popup.classList.replace('hidden', 'flex')
+        document.querySelector('form').setAttribute("action", "");
+    })
+
+    const openEditBox = (id, name, fine) => {
+        document.querySelector('#delete_form').classList.replace('hidden', 'flex');
+        document.querySelector('#update_form').setAttribute("action", "/admin/update_rules/" + id)
+        document.querySelector('#delete_form').setAttribute("action", "/admin/delete_rules/" + id)
+        console.log(id, name, fine)
+        document.querySelector('#name').value = name;
+        document.querySelector('#fine').value = fine;
+        popup.classList.replace('hidden', 'flex')
+        //document.querySelector('form').setAttribute("action", "");
+    }
+</script>
+
